@@ -8,7 +8,7 @@ This project aims to determine the transcriptional changes associated with tempe
 
 Raw Read Quality Control
 ➤ Tool: FastQC
-➤ Purpose: Assess quality of raw sequencing reads.
+➤ Purpose: Assess the quality of raw sequencing reads.
 
 Read Trimming
 ➤ Tool: Trimmomatic 
@@ -20,7 +20,7 @@ Post-trimming Quality Control
 
 Transcriptome Alignment / Quantification
 ➤ Tool: Salmon
-➤ Purpose: Quasi-mapping reads to transcriptome and quantifying transcript abundance.
+➤ Purpose: Quasi-mapping reads to the transcriptome and quantifying transcript abundance.
 
 Gene-level Aggregation and Differential Expression Analysis
 ➤ Tools: tximport → DESeq2
@@ -28,7 +28,7 @@ Gene-level Aggregation and Differential Expression Analysis
 
 ## Data Organisation: Directory Structure and Scripts
 
- <pre> ```mosquito_data/
+```mosquito_data/
 ├── FastQC_results/           # Quality reports for raw reads (FastQC output)
 ├── trimmed_reads/            # Trimmed FASTQ files (from Trimmomatic)
 ├── trimmed_fastqc_results/   # QC reports for trimmed reads (FastQC)
@@ -38,10 +38,11 @@ Gene-level Aggregation and Differential Expression Analysis
 git_repos/
 ├── Reference_genome/         # An. gambiae PEST genome/transcriptome (FASTA, GTF)
 ├── rnaseq_data/              # Raw data and RNA-seq processing scripts
-│   ├── fastqc.sh             # Script to run FastQC on raw reads
-│   ├── trimmomatic.sh        # Script for adapter trimming and quality filtering
-│   ├── salmon.sh             # Script to quantify expression using Salmon
-│   └── salmon.decoy.sh       # Script to generate decoy-aware index for Salmon``` </pre>
+│   ├── fastqc_array.sh             # Script to run FastQC on raw reads
+│   ├── trimmomatic_array.sh        # Script for adapter trimming and quality filtering
+│   └──  salmon_alignment.sh             # Script to quantify expression using Salmon 
+  ```
+  
 
 ## Metadata
 
