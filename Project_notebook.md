@@ -64,9 +64,9 @@ UJ-3092-48-2H_quant	R1	Presence adapters + Poly G + Poly T
 	R2	Presence adapters + Poly A
 UJ-3092-48-3H_quant	R1	Presence adapters + Poly G + Poly T
 	R2	Presence adapters + Poly A
-UJ-3092-Unr-1H_quant	R1	Presence adapters, Coronavirus top hit most represented sequence, to trim
+UJ-3092-Unr-1H_quant	R1	Presence adapters
 	R2	Presence adapters
-UJ-3092-Unr-2B_quant	R1	Presence adapters, Coronavirus top hit most represented sequence, to trim
+UJ-3092-Unr-2B_quant	R1	Presence adapters
 	R2	Presence adapters
 UJ-3092-Unr-2H_quant	R1	Presence adapters
 	R2	Presence adapters + Poly G + Poly T
