@@ -43,5 +43,7 @@ I performed Principal Component Analysis (PCA). This unsupervised dimensionality
 <img width="902" alt="Screenshot 2025-05-30 at 10 29 56" src="https://github.com/user-attachments/assets/19c95cec-ac54-4261-9bbf-648831af8344" />
 ![Scree_plot](https://github.com/user-attachments/assets/5381e100-6e96-4463-9789-67e391df3c08)
 
+Based on the PCA plots, removing those low-mapping samples seems to result in cleaner clustering and a more interpretable separation of conditions. Including them appears to introduce more variability, potentially masking true biological patterns. As mapping rates were low, I decided to remove them altogether. 
+
 
 
