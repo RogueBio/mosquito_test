@@ -80,10 +80,6 @@ UJ-3092-Unr-3H_quant	R1	Presence adapters + Poly A
  Adapter and Overrepresented Sequences
 - **Adapter detected:** TruSeq Adapter, Index 6 (removed using Trimmomatic)
 - **Most abundant overrepresented sequences in most reads:** Poly A/T and Poly C/G sequences found, as per Illumina guidelines 20 nt per string were removed with CutAdapt.
-- **Removed Coronavirus contamination from one sample** -> 
-
-![Screenshot 2025-05-30 at 22 24 25](https://github.com/user-attachments/assets/4aee29cb-fce0-444d-a24f-241d71e2813d)
-
 
 **Note:** Removing overrepresented sequences corresponding to real biological transcripts (e.g., highly expressed genes) can bias results. Thus, these sequences were retained to avoid introducing unintended biases.
 
