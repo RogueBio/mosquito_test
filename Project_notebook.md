@@ -85,7 +85,109 @@ UJ-3092-Unr-3H_quant	R1	Presence adapters + Poly A
 
 ## Post-trimming FastQC
 
-_(Include summary of FastQC results here, such as per-base sequence quality improvements, overall sequence length distributions, and any residual artifacts.)_
+Samples still showed overrepresented sequences; they were blasted individually per sample, and none of the sequences blasted anything other than Anopheles sequences, so these were not further trimmed. Two samples were very small in size after trimming, these were further investigated.
+
+- **UJ-3092-48-3B_quant:**
+- **UJ-3092-Unr-1B_quant:**
+
+Changed the parameters of Trimming to allow for more leniency, but the outcome of the trimming was still the same: Cutadapt log showed a high percentage of reads with adapter contamination
+
+*** UJ-3092-48-3B**
+
+Ran 
+```
+cutadapt \
+  -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \
+  -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
+  -a A{20} -a T{20} -a G{20} -a C{20} \
+  -A A{20} -A T{20} -A G{20} -A C{20} \
+  -q 10,10 \
+  --minimum-length 20 \
+  --pair-filter=both \
+  -o /home/ar9416e/mosquito_test/single_trim_reads_polyA/UJ-3092-48-3B_R1.fastq.gz \
+  -p /home/ar9416e/mosquito_test/single_trim_reads_polyA/UJ-3092-48-3B_R2.fastq.gz \
+  /home/ar9416e/temperature_samples/220211_A00181_0425_BHVMJNDSX2/Sample_UJ-3092-48-3B/UJ-3092-48-3B_S30_L001_R1_001.fastq.gz \
+  /home/ar9416e/temperature_samples/220211_A00181_0425_BHVMJNDSX2/Sample_UJ-3092-48-3B/UJ-3092-48-3B_S30_L001_R2_001.fastq.gz \
+  > /home/ar9416e/mosquito_test/single_trim_reads_polyA/UJ-3092-48-3B_cutadapt.log
+
+```
+And output of the log was:
+
+```
+This is cutadapt 4.2 with Python 3.10.4
+Command line parameters: -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT -a A{20} -a T{20} -a G{20} -a C{20} -A A{20} -A T{20} -A G{20} -A C{20} -q 10,10 --minimum-length 20 --pair-filter=both -o /home/ar9416e/mosquito_test/single_trim_reads_polyA/UJ-3092-48-3B_R1.fastq.gz -p /home/ar9416e/mosquito_test/single_trim_reads_polyA/UJ-3092-48-3B_R2.fastq.gz /home/ar9416e/temperature_samples/220211_A00181_0425_BHVMJNDSX2/Sample_UJ-3092-48-3B/UJ-3092-48-3B_S30_L001_R1_001.fastq.gz /home/ar9416e/temperature_samples/220211_A00181_0425_BHVMJNDSX2/Sample_UJ-3092-48-3B/UJ-3092-48-3B_S30_L001_R2_001.fastq.gz
+Processing paired-end reads on 1 core ...
+Finished in 51.101 s (35.712 µs/read; 1.68 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:          1,430,926
+  Read 1 with adapter:               1,414,427 (98.8%)
+  Read 2 with adapter:               1,414,361 (98.8%)
+
+== Read fate breakdown ==
+Pairs that were too short:           1,357,961 (94.9%)
+Pairs written (passing filters):        72,965 (5.1%)
+
+Total basepairs processed:   432,139,652 bp
+  Read 1:   216,069,826 bp
+  Read 2:   216,069,826 bp
+Quality-trimmed:                     993 bp (0.0%)
+  Read 1:           194 bp
+  Read 2:           799 bp
+Total written (filtered):     14,309,872 bp (3.3%)
+  Read 1:     6,391,006 bp
+  Read 2:     7,918,866 bp
+```
+
+*** UJ-3092-Unr-1B**
+
+Ran 
+```
+cutadapt \
+  -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \
+  -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
+  -a A{20} -a T{20} -a G{20} -a C{20} \
+  -A A{20} -A T{20} -A G{20} -A C{20} \
+  -q 10,10 \
+  --minimum-length 20 \
+  --pair-filter=both \
+  -o /home/ar9416e/mosquito_test/single_trim_reads_polyA/UJ-3092-Unr-1B_R1.fastq.gz \
+  -p /home/ar9416e/mosquito_test/single_trim_reads_polyA/UJ-3092-Unr-1B_R2.fastq.gz \
+  /home/ar9416e/temperature_samples/220211_A00181_0425_BHVMJNDSX2/Sample_UJ-3092-Unr-1B/UJ-3092-Unr-1B_S34_L001_R1_001.fastq.gz \
+  /home/ar9416e/temperature_samples/220211_A00181_0425_BHVMJNDSX2/Sample_UJ-3092-Unr-1B/UJ-3092-Unr-1B_S34_L001_R2_001.fastq.gz \
+  > /home/ar9416e/mosquito_test/single_trim_reads_polyA/UJ-3092-Unr-1B_cutadapt.log
+
+```
+And the log showed:
+
+```
+This is cutadapt 4.2 with Python 3.10.4
+Command line parameters: -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT -a A{20} -a T{20} -a G{20} -a C{20} -A A{20} -A T{20} -A G{20} -A C{20} -q 10,10 --minimum-length 20 --pair-filter=both -o /home/ar9416e/mosquito_test/single_trim_reads_polyA/UJ-3092-Unr-1B_R1.fastq.gz -p /home/ar9416e/mosquito_test/single_trim_reads_polyA/UJ-3092-Unr-1B_R2.fastq.gz /home/ar9416e/temperature_samples/220211_A00181_0425_BHVMJNDSX2/Sample_UJ-3092-Unr-1B/UJ-3092-Unr-1B_S34_L001_R1_001.fastq.gz /home/ar9416e/temperature_samples/220211_A00181_0425_BHVMJNDSX2/Sample_UJ-3092-Unr-1B/UJ-3092-Unr-1B_S34_L001_R2_001.fastq.gz
+Processing paired-end reads on 1 core ...
+Finished in 120.911 s (49.542 µs/read; 1.21 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:          2,440,590
+  Read 1 with adapter:               2,277,445 (93.3%)
+  Read 2 with adapter:               2,278,184 (93.3%)
+
+== Read fate breakdown ==
+Pairs that were too short:           1,554,410 (63.7%)
+Pairs written (passing filters):       886,180 (36.3%)
+
+Total basepairs processed:   737,058,180 bp
+  Read 1:   368,529,090 bp
+  Read 2:   368,529,090 bp
+Quality-trimmed:                   1,793 bp (0.0%)
+  Read 1:           318 bp
+  Read 2:         1,475 bp
+Total written (filtered):    197,882,275 bp (26.8%)
+  Read 1:    96,979,120 bp
+  Read 2:   100,903,155 bp
+
+```
 
 ## Alignment and Mapping
 
