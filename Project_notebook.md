@@ -396,7 +396,7 @@ Using the variance-stabilized data from DESeq2 (RNA-seq gene count data is not n
 ** Tissue-specific PCA results: Bodies ** The first principal component (PC1) captures the majority of the variance (72%), indicating a primary factor driving gene expression differences. The temperature values appear to be spread across PC1, suggesting temperature is a major contributor to gene expression variation. Unresponsive and 48C seem to disproportionately contribute to variance, and, specifically, Unresponsive seems to be heterogeneous. 
 
 
-<img width="941" alt="Screenshot 2025-06-01 at 13 26 28" src="https://github.com/user-attachments/assets/edaa4337-7075-41e6-9163-6fcc4e934824" />
+<img width="941" alt="Screenshot 2025-06-01 at 13 33 36" src="https://github.com/user-attachments/assets/11488b50-64c6-4552-9bbe-cf58d3e57161" />
 
 
 ** Tissue-specific PCA results: Heads ** PC1 likely captures a dominant trend in temperature-driven gene expression differences. Samples with temperatures at 36°C and 48°C seem to be positioned differently compared to lower temperatures (25°C and 30°C), although 40°C seems to cluster closer to those at 25°C and 30°C, indicating a shift in gene expression patterns. The Unresponsive (Unr) samples and 48°C appear to be more dispersed, suggesting variability. Lower temperatures (25°C and 30°C) form more compact clusters, suggesting consistent gene expression profiles. Could this be suggesting there's a similar response between those samples at 48°C, 36°C and unresponsive compared to the response observed for those at 30°C, 25°C and 40°C?
