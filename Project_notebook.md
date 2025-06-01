@@ -384,17 +384,24 @@ design=∼temperature∗tissue
 
 Step 3: PCA for Expression Pattern Visualization
 Using the variance-stabilized data from DESeq2 (RNA-seq gene count data is not normally distributed, thus it must be transformed for PCA).
-I performed Principal Component Analysis (PCA). This unsupervised dimensionality reduction technique helped visualize global expression patterns and assess whether the removal of low-quality samples altered clustering or separation between conditions.
 
-** Before removing samples:
-<img width="846" alt="Screenshot 2025-05-30 at 10 28 11" src="https://github.com/user-attachments/assets/e8e380d8-33fb-40f8-abf7-d108cdac3b30" />
-![Scree_plot](https://github.com/user-attachments/assets/c6fd7529-6577-43fd-be47-040cce0e6bb9)
+<img width="941" alt="Screenshot 2025-06-01 at 12 41 06" src="https://github.com/user-attachments/assets/71e2d78b-7ea5-4b6e-8fd5-d29b65771322" />
 
-**After removing samples:
-<img width="902" alt="Screenshot 2025-05-30 at 10 29 56" src="https://github.com/user-attachments/assets/19c95cec-ac54-4261-9bbf-648831af8344" />
-![Scree_plot](https://github.com/user-attachments/assets/5381e100-6e96-4463-9789-67e391df3c08)
+<img width="941" alt="Screenshot 2025-06-01 at 12 52 53" src="https://github.com/user-attachments/assets/5d0f2004-2ca9-464c-91e3-98b4f8fb33aa" />
 
-Based on the PCA plots, removing those low-mapping samples seems to result in cleaner clustering and a more interpretable separation of conditions. Including them appears to introduce more variability, potentially masking true biological patterns. As mapping rates were low, I decided to remove them altogether. 
+**Global PCA results** Tissue is the primary driver of variance (PC1, 78%), PC2 (9%) explains much less but has still meaningful variance. There’s a clear separation along PC1 between the two tissue types, tissue type dominates the expression variance. Temperature influences PC2, body samples show high temperatures such as 48°C higher on PC2. Head samples also show some vertical spreading, but it's less obvious. The Unresponsive variable shows heterogeneity, as it's scattered along the PC. 
+
+<img width="941" alt="Screenshot 2025-06-01 at 13 07 41" src="https://github.com/user-attachments/assets/b547621e-b0a9-4dab-ab71-02da9a38f215" />
+
+** Tissue-specific PCA results: Bodies ** The first principal component (PC1) captures the majority of the variance (72%), indicating a primary factor driving gene expression differences. The temperature values appear to be spread across PC1, suggesting temperature is a major contributor to gene expression variation. Unresponsive and 48C seem to disproportionately contribute to variance, and, specifically, Unresponsive seems to be heterogeneous. 
+
+
+<img width="941" alt="Screenshot 2025-06-01 at 13 26 28" src="https://github.com/user-attachments/assets/edaa4337-7075-41e6-9163-6fcc4e934824" />
+
+
+** Tissue-specific PCA results: Heads ** PC1 likely captures a dominant trend in temperature-driven gene expression differences. Samples with temperatures at 36°C and 48°C seem to be positioned differently compared to lower temperatures (25°C and 30°C), although 40°C seems to cluster closer to those at 25°C and 30°C, indicating a shift in gene expression patterns. The Unresponsive (Unr) samples and 48°C appear to be more dispersed, suggesting variability. Lower temperatures (25°C and 30°C) form more compact clusters, suggesting consistent gene expression profiles. Could this be suggesting there's a similar response between those samples at 48°C, 36°C and unresponsive compared to the response observed for those at 30°C, 25°C and 40°C?
+
+
 
 
 
