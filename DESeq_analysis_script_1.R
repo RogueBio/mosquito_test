@@ -43,9 +43,13 @@ sample_dirs <- list.files("/Users/ainhoarodriguezpereira/Documents/Mosquito_test
 # Extract temperature and tissue
 sample_info <- data.frame(
   sampleName = sample_dirs,
-  temperature = sub("UJ-3092-(\\d+|Unr)-.*", "\\1", sample_dirs),  # Updated regex to capture 'Unr' too
-  tissue = ifelse(grepl("B_quant", sample_dirs), "Body", "Head")
+  temperature = sub("UJ-3092-(\\d+|Unr)-.*", "\\1", sample_dirs),
+  tissue = sub(".*-(\\d+)([BH])_quant$", "\\2", sample_dirs)
 )
+
+
+# Then label B = Body, H = Head
+sample_info$tissue <- ifelse(sample_info$tissue == "B", "Body", "Head")
 
 # Remove bad samples
 bad_samples <- c("UJ-3092-48-3B_quant", "UJ-3092-Unr-1B_quant")
