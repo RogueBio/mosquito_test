@@ -185,6 +185,61 @@ sbatch --array=0-$(($num_files - 1)) git_repos/rnaseq_data_scripts/fastqc_array.
 
 ```
 sbatch --array=0-$((36 - 1)) git_repos/rnaseq_data_scripts/cutadapt_polya.sh
+#!/bin/bash
+#SBATCH --partition=cpu-standard
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=8G
+#SBATCH --time=01:00:00
+#SBATCH --job-name=trim_polyA
+#SBATCH --output=logs/polyA_trim_%A_%a.log
+#SBATCH --array=0-36
+
+# Load Cutadapt
+module load cutadapt/4.2-GCCcore-11.3.0
+
+# Directories
+input_dir="/home/ar9416e/mosquito_test/trimmed_reads"
+output_dir="/home/ar9416e/mosquito_test/trimmed_reads_polyA"
+mkdir -p "$output_dir"
+mkdir -p logs
+
+# Collect input files
+R1_files=($(find "$input_dir" -type f -name '*_R1_paired.fastq.gz' | sort))
+R2_files=($(find "$input_dir" -type f -name '*_R2_paired.fastq.gz' | sort))
+
+# Select file based on SLURM_ARRAY_TASK_ID
+R1=${R1_files[$SLURM_ARRAY_TASK_ID]}
+R2=${R2_files[$SLURM_ARRAY_TASK_ID]}
+
+# Extract base sample name (e.g., UJ-3092-25-1B)
+sample_name=$(basename "$R1" _R1_paired.fastq.gz)
+
+# Construct output filenames
+cut_base_R1="${sample_name}_cut_R1_paired"
+cut_base_R2="${sample_name}_cut_R2_paired"
+
+# Output paths
+R1_out="${output_dir}/${cut_base_R1}.fastq.gz"
+R2_out="${output_dir}/${cut_base_R2}.fastq.gz"
+
+# Run Cutadapt to remove polyA/T/C/G tails
+echo "Processing ${sample_name}"
+cutadapt \
+  -a "A{20}" -a "C{20}" \
+  -A "T{20}" -A "G{20}" \
+  -m 20 \
+  -o "$R1_out" \
+  -p "$R2_out" \
+  "$R1" "$R2"
+
+# Check result
+if [[ $? -eq 0 ]]; then
+  echo "PolyA/T trimming done for ${sample_name}"
+else
+  echo "Cutadapt failed for ${sample_name}"
+  exit 1
+fi
+
 ```
 ## QC Again to ensure they were removed successfully
 
@@ -273,42 +328,44 @@ done > percentage_mapped
 ## Assess mapping % to ensure good to use for DESeq
 
 ```
-UJ-3092-25-1B_quant: 85.5997%
-UJ-3092-25-1H_quant: 85.765%
-UJ-3092-25-2B_quant: 86.6355%
-UJ-3092-25-2H_quant: 87.2109%
-UJ-3092-25-3B_quant: 79.1229%
-UJ-3092-25-3H_quant: 86.2564%
-UJ-3092-30-1B_quant: 87.1759%
-UJ-3092-30-1H_quant: 85.6662%
-UJ-3092-30-2B_quant: 88.8804%
-UJ-3092-30-2H_quant: 84.6123%
-UJ-3092-30-3B_quant: 86.185%
-UJ-3092-30-3H_quant: 85.3965%
-UJ-3092-36-1B_quant: 85.8969%
-UJ-3092-36-1H_quant: 87.4188%
-UJ-3092-36-2B_quant: 87.0317%
-UJ-3092-36-2H_quant: 88.409%
-UJ-3092-36-3B_quant: 86.476%
-UJ-3092-36-3H_quant: 89.7034%
-UJ-3092-40-1B_quant: 88.5589%
-UJ-3092-40-1H_quant: 87.5719%
-UJ-3092-40-2B_quant: 86.3222%
-UJ-3092-40-2H_quant: 85.7973%
-UJ-3092-40-3B_quant: 85.2677%
-UJ-3092-40-3H_quant: 86.2961%
-UJ-3092-48-1B_quant: 85.9177%
-UJ-3092-48-1H_quant: 86.6066%
-UJ-3092-48-2B_quant: 82.3994%
-UJ-3092-48-2H_quant: 87.4921%
-UJ-3092-48-3B_quant: 5.23747%
-UJ-3092-48-3H_quant: 86.8481%
-UJ-3092-Unr-1B_quant: 15.0958%
-UJ-3092-Unr-1H_quant: 87.2495%
-UJ-3092-Unr-2B_quant: 88.5369%
-UJ-3092-Unr-2H_quant: 87.9834%
-UJ-3092-Unr-3B_quant: 76.3759%
-UJ-3092-Unr-3H_quant: 88.0948%
+]633;E;for d in *_quant;dd095526-acb7-40d8-a289-146e832bc414]633;C
+UJ-3092-25-1B: 87.5562%
+UJ-3092-25-1H: 85.9181%
+UJ-3092-25-2B: 87.0688%
+UJ-3092-25-2H: 87.2834%
+UJ-3092-25-3B: 85.8487%
+UJ-3092-25-3H: 86.2893%
+UJ-3092-30-1B: 87.337%
+UJ-3092-30-1H: 85.7054%
+UJ-3092-30-2B: 88.8959%
+UJ-3092-30-2H: 84.6386%
+UJ-3092-30-3B: 87.1709%
+UJ-3092-30-3H: 85.4539%
+UJ-3092-36-1B: 86.0536%
+UJ-3092-36-1H: 88.2435%
+UJ-3092-36-2B: 88.2865%
+UJ-3092-36-2H: 88.6173%
+UJ-3092-36-3B: 86.9037%
+UJ-3092-36-3H: 89.9245%
+UJ-3092-40-1B: 89.3323%
+UJ-3092-40-1H: 88.9819%
+UJ-3092-40-2B: 86.573%
+UJ-3092-40-2H: 85.9206%
+UJ-3092-40-3B: 85.6224%
+UJ-3092-40-3H: 87.2588%
+UJ-3092-48-1B: 86.4892%
+UJ-3092-48-1H: 88.2761%
+UJ-3092-48-2B: 85.2617%
+UJ-3092-48-2H: 88.8557%
+UJ-3092-48-3B: 5.51404%
+UJ-3092-48-3H: 87.1392%
+UJ-3092-Unr-1B: 15.112%
+UJ-3092-Unr-1H: 87.4587%
+UJ-3092-Unr-2B: 88.5549%
+UJ-3092-Unr-2H: 88.257%
+UJ-3092-Unr-3B: 76.8308%
+UJ-3092-Unr-3H: 88.498%
+
 ```
 ## Two samples below 75% to be removed for DESeq analysis
 
