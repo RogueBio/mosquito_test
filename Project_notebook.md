@@ -223,41 +223,43 @@ Used validated Salmon index with --validateMappings, ensuring alignment rigor.
 Ran Salmon Alignment for all samples, then generated a text file with the read mapping to assess successful or unsuccessful mapping.
 
 ```
-UJ-3092-25-1H_trimmed_cut_R2_paired.fastq.gz_quant: 85.7753%
-UJ-3092-25-2B_trimmed_cut_R2_paired.fastq.gz_quant: 86.6658%
-UJ-3092-25-2H_trimmed_cut_R2_paired.fastq.gz_quant: 87.2251%
-UJ-3092-25-3B_trimmed_cut_R2_paired.fastq.gz_quant: 79.1462%
-UJ-3092-25-3H_trimmed_cut_R2_paired.fastq.gz_quant: 86.2708%
-UJ-3092-30-1B_trimmed_cut_R2_paired.fastq.gz_quant: 87.1962%
-UJ-3092-30-1H_trimmed_cut_R2_paired.fastq.gz_quant: 85.6791%
-UJ-3092-30-2B_trimmed_cut_R2_paired.fastq.gz_quant: 88.8959%
-UJ-3092-30-2H_trimmed_cut_R2_paired.fastq.gz_quant: 84.6324%
-UJ-3092-30-3B_trimmed_cut_R2_paired.fastq.gz_quant: 86.206%
-UJ-3092-30-3H_trimmed_cut_R2_paired.fastq.gz_quant: 85.4109%
-UJ-3092-36-1B_trimmed_cut_R2_paired.fastq.gz_quant: 85.9194%
-UJ-3092-36-1H_trimmed_cut_R2_paired.fastq.gz_quant: 87.4383%
-UJ-3092-36-2B_trimmed_cut_R2_paired.fastq.gz_quant: 87.0504%
-UJ-3092-36-2H_trimmed_cut_R2_paired.fastq.gz_quant: 88.4271%
-UJ-3092-36-3B_trimmed_cut_R2_paired.fastq.gz_quant: 86.4982%
-UJ-3092-36-3H_trimmed_cut_R2_paired.fastq.gz_quant: 89.7167%
-UJ-3092-40-1B_trimmed_cut_R2_paired.fastq.gz_quant: 88.5846%
-UJ-3092-40-1H_trimmed_cut_R2_paired.fastq.gz_quant: 87.5855%
-UJ-3092-40-2B_trimmed_cut_R2_paired.fastq.gz_quant: 86.3431%
-UJ-3092-40-2H_trimmed_cut_R2_paired.fastq.gz_quant: 85.8156%
-UJ-3092-40-3B_trimmed_cut_R2_paired.fastq.gz_quant: 85.2924%
-UJ-3092-40-3H_trimmed_cut_R2_paired.fastq.gz_quant: 86.3177%
-UJ-3092-48-1B_trimmed_cut_R2_paired.fastq.gz_quant: 85.9451%
-UJ-3092-48-1H_trimmed_cut_R2_paired.fastq.gz_quant: 86.6183%
-UJ-3092-48-2B_trimmed_cut_R2_paired.fastq.gz_quant: 82.4108%
-UJ-3092-48-2H_trimmed_cut_R2_paired.fastq.gz_quant: 87.5016%
-UJ-3092-48-3B_trimmed_cut_R2_paired.fastq.gz_quant: 5.21449%
-UJ-3092-48-3H_trimmed_cut_R2_paired.fastq.gz_quant: 86.8625%
-UJ-3092-Unr-1B_trimmed_cut_R2_paired.fastq.gz_quant: 15.0974%
-UJ-3092-Unr-1H_trimmed_cut_R2_paired.fastq.gz_quant: 87.2626%
-UJ-3092-Unr-2B_trimmed_cut_R2_paired.fastq.gz_quant: 88.5424%
-UJ-3092-Unr-2H_trimmed_cut_R2_paired.fastq.gz_quant: 87.9967%
-UJ-3092-Unr-3B_trimmed_cut_R2_paired.fastq.gz_quant: 76.3877%
-UJ-3092-Unr-3H_trimmed_cut_R2_paired.fastq.gz_quant: 88.1059%
+�]633;E;for d in *_quant;dd095526-acb7-40d8-a289-146e832bc414��]633;C
+UJ-3092-25-1B: 87.5562%
+UJ-3092-25-1H: 85.9181%
+UJ-3092-25-2B: 87.0688%
+UJ-3092-25-2H: 87.2834%
+UJ-3092-25-3B: 85.8487%
+UJ-3092-25-3H: 86.2893%
+UJ-3092-30-1B: 87.337%
+UJ-3092-30-1H: 85.7054%
+UJ-3092-30-2B: 88.8959%
+UJ-3092-30-2H: 84.6386%
+UJ-3092-30-3B: 87.1709%
+UJ-3092-30-3H: 85.4539%
+UJ-3092-36-1B: 86.0536%
+UJ-3092-36-1H: 88.2435%
+UJ-3092-36-2B: 88.2865%
+UJ-3092-36-2H: 88.6173%
+UJ-3092-36-3B: 86.9037%
+UJ-3092-36-3H: 89.9245%
+UJ-3092-40-1B: 89.3323%
+UJ-3092-40-1H: 88.9819%
+UJ-3092-40-2B: 86.573%
+UJ-3092-40-2H: 85.9206%
+UJ-3092-40-3B: 85.6224%
+UJ-3092-40-3H: 87.2588%
+UJ-3092-48-1B: 86.4892%
+UJ-3092-48-1H: 88.2761%
+UJ-3092-48-2B: 85.2617%
+UJ-3092-48-2H: 88.8557%
+UJ-3092-48-3B: 5.51404%
+UJ-3092-48-3H: 87.1392%
+UJ-3092-Unr-1B: 15.112%
+UJ-3092-Unr-1H: 87.4587%
+UJ-3092-Unr-2B: 88.5549%
+UJ-3092-Unr-2H: 88.257%
+UJ-3092-Unr-3B: 76.8308%
+UJ-3092-Unr-3H: 88.498%
 
 ```
 ### Two samples showed low mapping
